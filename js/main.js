@@ -78,6 +78,11 @@ function showStats(data) {
         // Set title to username/repository
         document.title = $("#username").val() + "/" + $("#repository").val() + " - " + document.title;
 
+        // Filter out pre-releases
+data = data.filter(function(item) {
+    return item.prerelease === false;
+});
+        
         // Sort by creation date of the commit the release is targeting
         data.sort(function (a, b) {
             return (a.created_at < b.created_at) ? 1 : -1;
